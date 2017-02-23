@@ -29,9 +29,9 @@ void VecTester::runTests() const {
 	testReadFromStream();
 	testSubscript();
 //	testInequality();
-//	testAddition();
+	testAddition();
 //	testSubtraction();
-//	testDotProduct();
+	testDotProduct();
 //	testReadFromFile();
 //	testWriteToFile();
 	cout << "All tests passed!" << endl;
@@ -466,9 +466,6 @@ void VecTester::testSubscript() const{
 	cout << " 3 " << flush;
 
 
-
-
-
 	cout << "Passed!" << endl;
 }
 //
@@ -498,44 +495,44 @@ void VecTester::testSubscript() const{
 //	cout << "Passed!" << endl;
 //}
 //
-//void VecTester::testAddition() const {
-//	cout << "Testing +... " << flush;
-//	// nonempty
-//	Vec v1(3);
-//	Vec v2(3);
-//	v1.setItem(0, 1);
-//	v1.setItem(1, 2);
-//	v1.setItem(2, 3);
-//	v2.setItem(0, 2);
-//	v2.setItem(1, 4);
-//	v2.setItem(2, 6);
-//	Vec saveV1 = v1;    // for test 2 below
-//	Vec v3 = v1 + v2;
-//	assert( v3.getItem(0) == 3 );
-//	assert( v3.getItem(1) == 6 );
-//	assert( v3.getItem(2) == 9 );
-//	cout << " 1 " << flush;
-//	// addition should not change the left operand
-//	assert( v1.getItem(0) == saveV1.getItem(0) );
-//	assert( v1.getItem(1) == saveV1.getItem(1) );
-//	assert( v1.getItem(2) == saveV1.getItem(2) );
-//	cout << " 2 " << flush;
-//	// empty
-//	Vec v4, v5;
-//	v3 = v4 + v5;
-//	assert( v3.getSize() == 0 );
-//	assert( v3.myArray == NULL );
-//	cout << " 3 " << flush;
-//	// different sizes
-//	try {
-//		v3 = v2 + v4;
-//		cerr << "v2 + v4 succeeded for Vecs of different sizes";
-//		exit(1);
-//	} catch (invalid_argument&) {
-//		cout << " 4 " << flush;
-//	}
-//	cout << "Passed!" << endl;
-//}
+void VecTester::testAddition() const {
+	cout << "Testing +... " << flush;
+	// nonempty
+	Vec v1(3);
+	Vec v2(3);
+	v1.setItem(0, 1);
+	v1.setItem(1, 2);
+	v1.setItem(2, 3);
+	v2.setItem(0, 2);
+	v2.setItem(1, 4);
+	v2.setItem(2, 6);
+	Vec saveV1 = v1;    // for test 2 below
+	Vec v3 = v1 + v2;
+	assert( v3.getItem(0) == 3 );
+	assert( v3.getItem(1) == 6 );
+	assert( v3.getItem(2) == 9 );
+	cout << " 1 " << flush;
+	// addition should not change the left operand
+	assert( v1.getItem(0) == saveV1.getItem(0) );
+	assert( v1.getItem(1) == saveV1.getItem(1) );
+	assert( v1.getItem(2) == saveV1.getItem(2) );
+	cout << " 2 " << flush;
+	// empty
+	Vec v4, v5;
+	v3 = v4 + v5;
+	assert( v3.getSize() == 0 );
+	assert( v3.myArray == NULL );
+	cout << " 3 " << flush;
+	// different sizes
+	try {
+		v3 = v2 + v4;
+		cerr << "v2 + v4 succeeded for Vecs of different sizes";
+		exit(1);
+	} catch (invalid_argument&) {
+		cout << " 4 " << flush;
+	}
+	cout << "Passed!" << endl;
+}
 //
 //void VecTester::testSubtraction() const {
 //	cout << "Testing -... " << flush;
@@ -576,40 +573,40 @@ void VecTester::testSubscript() const{
 //	cout << "Passed!" << endl;
 //}
 //
-//void VecTester::testDotProduct() const {
-//	cout << "Testing *... " << flush;
-//	Vec v1(3);
-//	Vec v2(3);
-//	v1.setItem(0, 1);
-//	v1.setItem(1, 2);
-//	v1.setItem(2, 3);
-//	v2.setItem(0, 2);
-//	v2.setItem(1, 4);
-//	v2.setItem(2, 6);
-//	Vec saveV1 = v1;  // for test 2 below
-//	double product = v1 * v2;
-//	assert( product == 28 );
-//	cout << " 1 " << flush;
-//	// dot product should not change the left operand
-//	assert( v1.getItem(0) == saveV1.getItem(0) );
-//	assert( v1.getItem(1) == saveV1.getItem(1) );
-//	assert( v1.getItem(2) == saveV1.getItem(2) );
-//	cout << " 2 " << flush;
-//	// empty
-//	Vec v4, v5;
-//	product = v4 * v5;
-//	assert( product == 0 );
-//	cout << " 3 " << flush;
-//	// different sizes
-//	try {
-//		product = v2 * v4;
-//		cerr << "v2 * v4 succeeded for Vecs of different sizes";
-//		exit(1);
-//	} catch (invalid_argument&) {
-//		cout << " 4 " << flush;
-//	}
-//	cout << "Passed!" << endl;
-//}
+void VecTester::testDotProduct() const {
+	cout << "Testing *... " << flush;
+	Vec v1(3);
+	Vec v2(3);
+	v1.setItem(0, 1);
+	v1.setItem(1, 2);
+	v1.setItem(2, 3);
+	v2.setItem(0, 2);
+	v2.setItem(1, 4);
+	v2.setItem(2, 6);
+	Vec saveV1 = v1;  // for test 2 below
+	double product = v1 * v2;
+	assert( product == 28 );
+	cout << " 1 " << flush;
+	// dot product should not change the left operand
+	assert( v1.getItem(0) == saveV1.getItem(0) );
+	assert( v1.getItem(1) == saveV1.getItem(1) );
+	assert( v1.getItem(2) == saveV1.getItem(2) );
+	cout << " 2 " << flush;
+	// empty
+	Vec v4, v5;
+	product = v4 * v5;
+	assert( product == 0 );
+	cout << " 3 " << flush;
+	// different sizes
+	try {
+		product = v2 * v4;
+		cerr << "v2 * v4 succeeded for Vecs of different sizes";
+		exit(1);
+	} catch (invalid_argument&) {
+		cout << " 4 " << flush;
+	}
+	cout << "Passed!" << endl;
+}
 //
 //void VecTester::testReadFromFile() const {
 //	cout << "Testing readFrom()... " << flush;

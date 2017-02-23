@@ -26,10 +26,12 @@ public:
     bool operator==(const Vec& v2);
     Item& operator[](unsigned i);
     Item& operator[](unsigned i) const;
+    Vec operator+(const Vec& vec2);
+    Item operator*(const Vec& vec2);
 
     // Getters
-	unsigned getSize() { return mySize;}
-	unsigned getItem(unsigned index);
+	unsigned getSize() const { return mySize;}
+	unsigned getItem(unsigned index) const;
 
 	// Setters
 	void setSize(unsigned newSize);
@@ -37,6 +39,7 @@ public:
 
 	// Read and Write
     void writeTo(ostream& out) const;
+    void writeTo(string fileName) const;
     void readFrom(istream& in);
 
 

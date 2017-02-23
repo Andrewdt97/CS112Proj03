@@ -6,6 +6,9 @@
  */
 
 #include "Vec.h"
+#include <cassert>
+#include <fstream>
+using namespace std;
 //////////////////////////////////////////////
 // Constructors and Deconstructors
 //////////////////////////////////////////////
@@ -149,7 +152,7 @@ void Vec::setSize(unsigned newSize) {
 //////////////////////////////////////////////
 // Getters
 //////////////////////////////////////////////
-unsigned Vec::getItem(unsigned index) {
+unsigned Vec::getItem(unsigned index) const{
 	if (index >= mySize) {
 		throw range_error("Vec::getItem(): Bad index");
 	} else {
@@ -218,4 +221,55 @@ Item& Vec::operator[](unsigned i) {
 	return myArray[i];
 }
 
+void Vec::writeTo(string fileName) const{
+	/* Writes array to file of fileName
+	 * @param: fileName, a string
+	 * Precondtion: A Vec and a valid fileName
+	 * Postcodition: The Vec is written to the file and can be read with readFrom()
+	 * Andrew Thomas (adt8)
+	 */
+	ofstream fout( fileName.c_str() );
+	assert( fout.is_open() );
+	fout << mySize << "\n";
+	for (unsigned i = 0; i < mySize; i++) {
+		fout << myArray[i] << "\n";;
+	}
+	fout.close();
 
+}
+
+Vec Vec::operator+(const Vec& vec2) {
+	/* Adds two Vecs together
+	 * @param: vec2, a Vec
+	 * Precondtion: Two Vecs
+	 * Return: a Vec is returned with each item of the two inputs added together
+	 * Andrew Thomas (adt8)
+	 */
+	if (mySize != vec2.getSize()) {
+		throw invalid_argument("Vec operator+: Vecs are different sizes");
+	}
+	Vec returnVec(mySize);
+	for (unsigned i = 0; i < mySize; i++) {
+		returnVec[i] = myArray[i] + vec2[i];
+	}
+
+	return returnVec;
+}
+
+Item Vec::operator*(const Vec& vec2){
+	/* Gets the dot product of two Vecs
+	 * @param: vec2, a Vec
+	 * Precondtion: Two Vecs
+	 * Return: The summation of the products of each item in the two Vecs
+	 * Andrew Thomas (adt8)
+	 */
+	if (mySize != vec2.getSize()) {
+		throw invalid_argument("Vec operator*: Vecs are different sizes");
+	}
+	Item returnVal = Item();
+	for (unsigned i = 0; i < mySize; i++) {
+		returnVal += myArray[i] * vec2[i];
+	}
+
+	return returnVal;
+}
